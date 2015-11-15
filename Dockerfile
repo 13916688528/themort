@@ -9,6 +9,7 @@ WORKDIR /opt
 RUN git clone https://github.com/ianmiell/shutit-library
 
 ENV HOME /root
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
 RUN mkdir /opt/themortgagemeter
 ADD . /opt/themortgagemeter
