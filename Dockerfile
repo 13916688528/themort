@@ -9,7 +9,6 @@ WORKDIR /opt
 RUN git clone https://github.com/ianmiell/shutit-library
 
 ENV HOME /root
-RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
 RUN mkdir /opt/themortgagemeter
 ADD . /opt/themortgagemeter
@@ -58,6 +57,6 @@ RUN echo "containerpass:weijun34" >> ~/.shutit/config
 WORKDIR /opt/themortgagemeter/docker/shutit/shutit_modules/com/themortgagemeter
 
 RUN shutit build --shutit_module_path /opt/shutit-library --delivery dockerfile
-
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 CMD ["/root/start_themortgagemeter.sh"]
 
